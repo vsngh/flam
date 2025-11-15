@@ -1,113 +1,52 @@
 Real-Time Edge Detection Viewer
 
-Android + OpenCV (C++) + OpenGL ES + TypeScript (Web)
-3-Day R&D Intern Technical Challenge
+This project is a simple Android + Native (C++) + Web setup that demonstrates how to:
 
-Overview
+Capture camera frames on Android
 
-This project showcases a real-time camera processing pipeline built for Android, combining OpenCV, OpenGL ES, and JNI for native-level performance. It captures frames from the device camera, sends them to a native C++ layer for processing (Canny Edge Detection or Grayscale conversion), and renders the processed output in real time using OpenGL.
+Process each frame using OpenCV in C++ (via JNI)
 
-Alongside the Android app, there’s a lightweight TypeScript-based web viewer that displays a sample processed frame. The web viewer demonstrates how native image outputs can be integrated and visualized within a web interface.
+Display the processed output using OpenGL ES
 
-Android App — Key Features
+Show a sample processed frame on a small TypeScript web viewer
 
-Real-time camera feed using TextureView and the Camera2 API
+The goal is to show end-to-end integration of Android, NDK, OpenCV, OpenGL, and a basic web component.
 
-JNI bridge for efficient frame transfer between Java and C++
+⭐ What the Project Includes
+Android App
 
-OpenCV-based image processing, supporting both edge detection and grayscale filters
+Live camera feed
 
-OpenGL ES rendering for displaying processed frames smoothly
+Frames sent to native C++ layer using JNI
 
-Stable performance around 15 FPS
+OpenCV processing (Canny Edge Detection / Grayscale)
 
-Toggle option to switch between raw and processed feeds
+Output rendered on screen using OpenGL ES
 
-Web Viewer (TypeScript)
+Basic UI with an optional toggle (Raw ↔ Processed)
 
-A simple TypeScript + HTML demo that displays a static processed frame exported from the Android app.
-It includes basic UI updates like displaying frame resolution, FPS, and processing details — showcasing how native data can be visualized on the web.
+Native (C++ / NDK)
 
-Project Structure
-app/      → Android Java/Kotlin code (camera + UI)
-jni/      → C++ native code (OpenCV processing)
-gl/       → OpenGL ES renderer and shaders
-web/      → TypeScript-based web viewer
-assets/   → Sample frames and screenshots
-README.md → Project documentation
+OpenCV-based image processing
 
-Technical Details
-Native (C++ & JNI)
+Efficient frame conversion and handling
 
-Uses OpenCV for all image processing (edge detection, grayscale, etc.)
-
-Frames are transferred between Java and C++ via JNI
-
-Processed frames are sent back as OpenGL textures for rendering
-
-Rendering (OpenGL ES 2.0)
-
-Real-time rendering handled by vertex and fragment shaders
-
-Optimized pipeline for smooth visual output
-
-Supports basic GLSL effects such as grayscale
+Clean JNI interface connecting Java ↔ C++
 
 Web Viewer
 
-Written in TypeScript, compiled with tsc
+Simple HTML + TypeScript page
 
-Displays a static processed image
+Displays a sample processed frame (static/base64)
 
-Shows metadata such as resolution and FPS
+Shows basic info like resolution or FPS (dummy)
 
-Includes a mock WebSocket endpoint to simulate real-time frame updates
+⚙️ How to Run
 
-Architecture Flow
+Open the Android project in Android Studio
 
-Camera captures live frames on Android
+Make sure NDK + CMake + OpenCV SDK are configured
 
-Frames are passed to native C++ through JNI
+Build & run on a physical Android device
 
-C++ layer processes frames using OpenCV
-
-Processed frames are returned as OpenGL textures
-
-OpenGL renders the textures in real time
-
-A processed frame can be exported and viewed on the web viewer
-
-Setup & Build Instructions
-Android
-
-Install Android Studio
-
-Enable NDK and CMake in SDK Manager
-
-Add and configure the OpenCV SDK in CMakeLists.txt
-
-Build and run on a physical Android device (ensure camera permissions are granted)
-
-Web
-
-Navigate to the web/ directory
-
-Install dependencies
-
-npm install
-
-
-Build the TypeScript project
-
-
-Open index.html in a browser to view the sample processed frame
-
-Additional Features
-
-Toggle button for switching between raw and processed camera feed
-
-Real-time FPS counter and processing time logger
-
-Basic GLSL shader for grayscale effects
-
-Mock WebSocket to simulate frame streaming to the web viewer
+Open /web/index.html in the browser to see the sample frame view
